@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.ibs</groupId>
-    <artifactId>Teststand1</artifactId>
+    <artifactId>CucumberTestStand</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
