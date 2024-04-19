@@ -31,41 +31,18 @@ import static org.openqa.selenium.remote.ErrorCodes.TIMEOUT;
 public class StepAddGoods {
     private static WebDriver driver;
 
-    @BeforeAll
-    public static void StepAddGoods () throws Exception {
-        System.setProperty("REMOTE", "true");
-
-        String browser = System.getProperty("BROWSER");
-        String browserVersion = System.getProperty("BROWSER_VERSION");
-
-        if (Boolean.parseBoolean (System.getProperty ("REMOTE"))) {
-
-            DesiredCapabilities capabilities = new DesiredCapabilities ();
-            capabilities.setCapability ("browserName", browser);
-            capabilities.setCapability ("browserVersion", browserVersion);
-            capabilities.setCapability ("selenoid:options", Map.<String, Object>of (
-                    "enableVNC", true,
-                    "enableVideo", false
-            ));
-            driver = new RemoteWebDriver(
-                    new URL("http://149.154.71.152:4444/wd/hub"),
-                    capabilities
-            );
-        } else {
-            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-            driver = new ChromeDriver();
-
-        }
+    @Дано("открыт стенд")
+    public void openStand() {
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         driver.get("http://149.154.71.152:8080/");
     }
 
-    @Дано("открыт стенд")
-    public void openStand() {
 
-    }
+
 
     @Когда("Пользователь нажимает на выпадающий список {string}")
     public void clickSandboxButton(String string) {
